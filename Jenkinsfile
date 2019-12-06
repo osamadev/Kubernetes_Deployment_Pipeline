@@ -1,6 +1,8 @@
 pipeline {
   environment {
-    dockerhubCredentials = 'dockerhubCredentials'
+    registry = 'omosaad/devops2020'
+    registryCredential = 'dockerhubCredentials'
+    dockerImage = ''
   }
     agent any
     stages {
@@ -51,10 +53,5 @@ fi
         sh 'docker run --name capstone -d -p 80:80 omosaad/flask-app:${env.GIT_HASH}'
       }
     }
-  }
-  environment {
-    registry = 'omosaad/devops2020'
-    registryCredential = 'dockerhubCredentials'
-    dockerImage = ''
   }
 }

@@ -41,7 +41,7 @@ fi
       steps {
         script {
           dockerImage = docker.build("omosaad/flask-app:${env.GIT_HASH}")
-          docker.withRegistry('', dockerhubCredentials) {
+          docker.withRegistry('', registryCredential) {
             dockerImage.push()
           }
         }

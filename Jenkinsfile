@@ -38,6 +38,7 @@ fi
       }
     }
       stage('Lint Python') {
+        steps {
         script {
           docker.image('eeacms/pylint:latest').inside() {
             sh 'pylint ./app.py | tee -a python_lint.txt'
@@ -53,6 +54,7 @@ fi
 '''
           }
         }
+      }
       }
     stage('Build & Push to dockerhub') {
       steps {

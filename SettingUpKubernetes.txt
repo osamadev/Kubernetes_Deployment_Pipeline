@@ -1,0 +1,86 @@
+Last login: Sat Oct 26 18:29:22 on console
+192-168-1-10:~ uzmasyed$ minikube
+Minikube is a CLI tool that provisions and manages single-node Kubernetes
+clusters optimized for development workflows.
+
+Basic Commands:
+  start          Starts a local kubernetes cluster
+  status         Gets the status of a local kubernetes cluster
+  stop           Stops a running local kubernetes cluster
+  delete         Deletes a local kubernetes cluster
+  dashboard      Access the kubernetes dashboard running within the minikube
+cluster
+
+Images Commands:
+  docker-env     Sets up docker env variables; similar to '$(docker-machine
+env)'
+  cache          Add or delete an image from the local cache.
+
+Configuration and Management Commands:
+  addons         Modify minikube's kubernetes addons
+  config         Modify minikube config
+  profile        Profile gets or sets the current minikube profile
+  update-context Verify the IP address of the running cluster in kubeconfig.
+
+Networking and Connectivity Commands:
+  service        Gets the kubernetes URL(s) for the specified service in your
+local cluster
+  tunnel         tunnel makes services of type LoadBalancer accessible on
+localhost
+
+Advanced Commands:
+  mount          Mounts the specified directory into minikube
+  ssh            Log into or run a command on a machine with SSH; similar to
+'docker-machine ssh'
+  kubectl        Run kubectl
+
+Troubleshooting Commands:
+  ssh-key        Retrieve the ssh identity key path of the specified cluster
+  ip             Retrieves the IP address of the running cluster
+  logs           Gets the logs of the running instance, used for debugging
+minikube, not user code.
+  update-check   Print current and latest version number
+  version        Print the version of minikube
+
+Other Commands:
+  completion     Outputs minikube shell completion for the given shell (bash or
+zsh)
+
+Use "minikube <command> --help" for more information about a given command.
+192-168-1-10:~ uzmasyed$ minikube start
+🎉  minikube 1.5.0 is available! Download it: https://github.com/kubernetes/minikube/releases/tag/v1.5.0
+💡  To disable this notice, run: 'minikube config set WantUpdateNotification false'
+
+🙄  minikube v1.4.0 on Darwin 10.13.6
+💿  Downloading VM boot image ...
+    > minikube-v1.4.0.iso.sha256: 65 B / 65 B [--------------] 100.00% ? p/s 0s
+    > minikube-v1.4.0.iso: 135.73 MiB / 135.73 MiB [-] 100.00% 5.43 MiB p/s 25s
+🔥  Creating virtualbox VM (CPUs=2, Memory=2000MB, Disk=20000MB) ...
+🐳  Preparing Kubernetes v1.16.0 on Docker 18.09.9 ...
+💾  Downloading kubelet v1.16.0
+💾  Downloading kubeadm v1.16.0
+🚜  Pulling images ...
+🚀  Launching Kubernetes ... 
+⌛  Waiting for: apiserver proxy etcd scheduler controller dns
+🏄  Done! kubectl is now configured to use "minikube"
+192-168-1-10:~ uzmasyed$ kubectl config view
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority: /Users/uzmasyed/.minikube/ca.crt
+    server: https://192.168.99.100:8443
+  name: minikube
+contexts:
+- context:
+    cluster: minikube
+    user: minikube
+  name: minikube
+current-context: minikube
+kind: Config
+preferences: {}
+users:
+- name: minikube
+  user:
+    client-certificate: /Users/uzmasyed/.minikube/client.crt
+    client-key: /Users/uzmasyed/.minikube/client.key
+192-168-1-10:~ uzmasyed$ 

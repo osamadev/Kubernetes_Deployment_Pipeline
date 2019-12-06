@@ -3,4 +3,4 @@ Flask
 numpy
 pandas
 sklearn
-python-sklearn
+scikit-learn

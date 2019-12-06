@@ -43,7 +43,7 @@ fi
           docker.image('eeacms/pylint:latest').inside() {
             sh 'pylint ./app.py | tee -a python_lint.txt'
             sh '''
-lintErrors=$(stat --printf="%s"  hadolint_lint.txt)
+lintErrors=$(stat --printf="%s"  python_lint.txt)
 if [ "$lintErrors" -gt "0" ]; then
 echo "Errors have been found, please see below"
 cat python_lint.txt

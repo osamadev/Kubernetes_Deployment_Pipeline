@@ -51,7 +51,7 @@ fi
     stage('Build & Push to dockerhub') {
       steps {
         script {
-          env.dockerImage = docker.build("omosaad/flask-app:${env.GIT_HASH}")
+          dockerImage = docker.build("omosaad/flask-app:${env.GIT_HASH}")
           docker.withRegistry('', registryCredential) {
             dockerImage.push()
           }

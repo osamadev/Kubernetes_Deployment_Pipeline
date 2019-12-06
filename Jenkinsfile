@@ -41,7 +41,7 @@ fi
         steps {
         script {
           docker.image('eeacms/pylint:latest').inside() {
-            sh 'pylint ./app.py'
+            sh 'sudo pylint ./app.py'
           }
         }
       }

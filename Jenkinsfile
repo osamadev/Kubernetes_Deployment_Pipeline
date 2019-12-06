@@ -1,7 +1,7 @@
 pipeline {
   environment {
-        dockerhubCredentials = 'dockerhubCredentials'
-    }
+    dockerhubCredentials = 'dockerhubCredentials'
+  }
     agent any
     stages {
     stage('Hashing images') {

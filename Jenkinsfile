@@ -50,7 +50,7 @@ fi
     }
     stage('Build Docker Container') {
       steps {
-        sh 'docker run --name flask-app -d -p 80:80 dockerImage'
+        sh 'docker run --name flask-app -d -p 80:80 $dockerImage'
       }
     }
   }

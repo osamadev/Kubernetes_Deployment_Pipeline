@@ -43,7 +43,7 @@ fi
           sh '''#!/bin/bash
             conda create --yes -n ${BUILD_TAG} python
                       source activate ./${BUILD_TAG} 
-                      sudo pip install -r requirements.txt
+                      sudo -s pip install -r requirements.txt
                     '''
           sh  'sudo pylint ./app.py'
       }

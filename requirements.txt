@@ -2,4 +2,4 @@ pylint
 Flask
 numpy
 pandas
-scikit-learn
+sklearn

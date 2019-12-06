@@ -41,7 +41,7 @@ fi
         steps {
         script {
           docker.image('eeacms/pylint:latest').inside() {
-            sh 'sudo pylint ./app.py'
+            sh 'pylint ./app.py'
           }
         }
       }
@@ -49,7 +49,7 @@ fi
     stage('Build & Push to dockerhub') {
       steps {
         script {
-          dockerImage = docker.build("omosaad/flask-app:${env.GIT_HASH}")
+          env.dockerImage = docker.build("omosaad/flask-app:${env.GIT_HASH}")
           docker.withRegistry('', registryCredential) {
             dockerImage.push()
           }
@@ -60,8 +60,7 @@ fi
     stage('Build Docker Container') {
       steps {
         script {
-          dockerImage = docker.build("omosaad/flask-app:${env.GIT_HASH}")
-          sh 'docker run --name flask-app -d -p 80:80 ${dockerImage}'
+          sh 'docker run --name flask-app -d -p 80:80 ${env.dockerImage}'
         }
       }
     }

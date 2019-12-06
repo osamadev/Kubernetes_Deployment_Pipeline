@@ -40,8 +40,9 @@ fi
     }
       stage('Lint Python') {
         steps {
-          sh '''conda create --yes -n ${BUILD_TAG} python
-                      conda activate ${BUILD_TAG} 
+          sh '''#!/bin/bash
+            conda create --yes -n ${BUILD_TAG} python
+                      source activate ./${BUILD_TAG} 
                       pip install -r requirements.txt
                     '''
           sh  'pylint ./app.py'

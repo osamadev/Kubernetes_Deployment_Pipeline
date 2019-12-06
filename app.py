@@ -11,7 +11,7 @@ from sklearn.externals import joblib
 from sklearn.preprocessing import StandardScaler
 
 APP = Flask(__name__)
-LOG = create_logger(app)
+LOG = create_logger(APP)
 LOG.setLevel(logging.INFO)
 
 def scale(payload):
@@ -22,13 +22,13 @@ def scale(payload):
     scaled_adhoc_predict = scaler.transform(payload.astype(float))
     return scaled_adhoc_predict
 
-@app.route("/")
+@APP.route("/")
 def home():
     """Default Route"""
     html = "<h3>Sklearn Prediction Home</h3>"
     return html.format(format)
 
-@app.route("/predict", methods=['POST'])
+@APP.route("/predict", methods=['POST'])
 def predict():
     """Performs an sklearn prediction
 
@@ -66,7 +66,7 @@ def predict():
     # scale the input
     scaled_payload = scale(inference_payload)
     # get an output prediction from the pretrained model, clf
-    prediction = list(clf.predict(scaled_payload))
+    prediction = list(CLF.predict(scaled_payload))
     # TO DO:  Log the output prediction value
     LOG.info("Prediction Value: \n{prediction}")
     return jsonify({'prediction': prediction})

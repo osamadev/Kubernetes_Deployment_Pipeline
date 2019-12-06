@@ -40,9 +40,7 @@ fi
       stage('Lint Python') {
         steps {
         script {
-          docker.image('eeacms/pylint:latest').inside() {
             sh 'pylint ./app.py'
-          }
         }
       }
       }

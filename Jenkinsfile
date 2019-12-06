@@ -44,8 +44,8 @@ fi
             conda create --yes -n ${BUILD_TAG} python
                       source activate ${BUILD_TAG} 
                       pip install -r requirements.txt
+                      pylint ./app.py
                     '''
-          sh  'pylint ./app.py'
       }
       }
     stage('Build & Push to dockerhub') {

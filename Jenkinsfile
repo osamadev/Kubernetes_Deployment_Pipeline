@@ -3,6 +3,7 @@ pipeline {
     registry = 'omosaad/devops2020'
     registryCredential = 'dockerhubCredentials'
     dockerImage = ''
+    PATH="/var/lib/jenkins/miniconda3/bin:$PATH"
   }
     agent any
     stages {
@@ -39,11 +40,11 @@ fi
     }
       stage('Lint Python') {
         steps {
-        script {
-             docker.image('eeacms/pylint:latest').inside() {
-                sh 'pylint ./app.py'
-             }
-        }
+          sh '''conda create --yes -n ${BUILD_TAG} python
+                      source activate ${BUILD_TAG} 
+                      pip install -r requirements.txt
+                    '''
+          sh  'pylint ./app.py'
       }
       }
     stage('Build & Push to dockerhub') {

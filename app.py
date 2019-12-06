@@ -1,6 +1,10 @@
+#!/usr/bin/env python
+"""This script prompts a user to enter a message to encode or decode
+using a classic Caeser shift substitution (3 letter shift)"""
+
+import logging
 from flask import Flask, request, jsonify
 from flask.logging import create_logger
-import logging
 
 import pandas as pd
 from sklearn.externals import joblib

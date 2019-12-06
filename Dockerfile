@@ -8,6 +8,8 @@ COPY app.py /application/
 
 COPY ./model_data/ /application/model_data
 
+COPY ./requirements.txt /application/
+
 ## Step 3:
 # Install packages from requirements.txt./
 # hadolint ignore=DL3013

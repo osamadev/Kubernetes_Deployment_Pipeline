@@ -37,6 +37,23 @@ fi
 
       }
     }
+      stage('Lint Python') {
+        script {
+          docker.image('eeacms/pylint:latest').inside() {
+            sh 'pylint ./app.py | tee -a python_lint.txt'
+            sh '''
+lintErrors=$(stat --printf="%s"  hadolint_lint.txt)
+if [ "$lintErrors" -gt "0" ]; then
+echo "Errors have been found, please see below"
+cat python_lint.txt
+exit 1
+else
+echo "There are no erros found on python app!!"
+fi
+'''
+          }
+        }
+      }
     stage('Build & Push to dockerhub') {
       steps {
         script {
@@ -51,6 +68,7 @@ fi
     stage('Build Docker Container') {
       steps {
         script {
+          dockerImage = docker.build("omosaad/flask-app:${env.GIT_HASH}")
           sh 'docker run --name flask-app -d -p 80:80 ${dockerImage}'
         }
       }

@@ -56,8 +56,8 @@ fi
     stage('Build Docker Container') {
       steps {
         sh """#!/usr/bin/env bash
-                  docker run --name flask-app -d -p 80:80 omosaad/flask-app:${env.GIT_HASH}
-                  """
+                          docker run --name flask-app -d -p 80:80 omosaad/flask-app:${env.GIT_HASH}
+                          """
       }
     }
   }

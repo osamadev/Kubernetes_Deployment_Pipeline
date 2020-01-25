@@ -1,12 +1,6 @@
 pipeline {
-  environment {
-    registry = 'omosaad/devops2020'
-    registryCredential = 'dockerhubCredentials'
-    dockerImage = ''
-    PATH="/var/lib/jenkins/miniconda3/bin:$PATH"
-  }
-    agent any
-    stages {
+  agent any
+  stages {
     stage('Hashing images') {
       steps {
         script {
@@ -38,16 +32,16 @@ fi
 
       }
     }
-      stage('Lint Python') {
-        steps {
-          sh '''#!/bin/bash
+    stage('Lint Python') {
+      steps {
+        sh '''#!/bin/bash
             conda create --yes -n ${BUILD_TAG} python
                       source activate ${BUILD_TAG} 
                       pip install --no-cache-dir -r requirements.txt
                       pylint ./app.py
                     '''
       }
-      }
+    }
     stage('Build & Push to dockerhub') {
       steps {
         script {
@@ -61,10 +55,16 @@ fi
     }
     stage('Build Docker Container') {
       steps {
-          sh """#!/usr/bin/env bash
-          docker run --name flask-app -d -p 80:80 omosaad/flask-app:${env.GIT_HASH}
-          """
+        sh """#!/usr/bin/env bash
+                  docker run --name flask-app -d -p 80:80 omosaad/flask-app:${env.GIT_HASH}
+                  """
       }
     }
+  }
+  environment {
+    registry = 'omosaad/devops2020'
+    registryCredential = 'dockerhubCredentials'
+    dockerImage = ''
+    PATH = "/var/lib/jenkins/miniconda3/bin:$PATH"
   }
 }
